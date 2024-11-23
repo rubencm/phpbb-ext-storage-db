@@ -1,0 +1,26 @@
+services:
+
+# Listeners
+    rubencm.storage_db.listener:
+        class: rubencm\storage_db\event\listener
+        arguments:
+            - '@language'
+        tags:
+            - { name: event.listener }
+
+# Adapters
+    rubencm.storage.adapter.db:
+        class: rubencm\storage_db\adapter\db
+        shared: false
+        arguments:
+            - '@dbal.conn'
+            - '%core.table_prefix%'
+        tags:
+            - { name: storage.adapter }
+
+# Providers
+    rubencm.storage.provider.db:
+        class: rubencm\storage_db\provider\db
+        arguments:
+        tags:
+            - { name: storage.provider }
