@@ -13,16 +13,37 @@
 
 namespace rubencm\storage_db\provider;
 
+use phpbb\language\language;
 use phpbb\storage\provider\provider_interface;
 
 class db implements provider_interface
 {
+	/**
+	 * @var language
+	 */
+	protected $language;
+
+	/**
+	 * Constructor
+	 *
+	 * @param language $language
+	 */
+	public function __construct(language $language)
+	{
+		$this->language = $language;
+	}
+
 	/**
 	 * {@inheritdoc}
 	 */
 	public function get_name(): string
 	{
 		return 'db';
+	}
+
+	public function get_title(): string
+	{
+		return $this->language->lang('STORAGE_ADAPTER_DB_NAME');
 	}
 
 	/**
@@ -48,4 +69,5 @@ class db implements provider_interface
 	{
 		return true;
 	}
+
 }

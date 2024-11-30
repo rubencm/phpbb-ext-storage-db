@@ -22,5 +22,6 @@ services:
     rubencm.storage.provider.db:
         class: rubencm\storage_db\provider\db
         arguments:
+            - '@language'
         tags:
             - { name: storage.provider }
